@@ -1,11 +1,8 @@
 const express = require("express");
 const app = express();
 const courses = require("./routes/courses");
+const student = require("./routes/students");
 const db = require("./models");
-
-// (async () => {
-//   await db.sequelize.sync({ force: true });
-// })();
 
 app.get("/", (req, res) => {
   console.log("made a request");
@@ -15,21 +12,12 @@ app.get("/", (req, res) => {
 //middleware
 app.use(express.json());
 
+//routes
 app.use("/api/v1/courses", courses);
+app.use("/api/v1/students", student);
 
-//Routes
-/**
- * Get all courses {Get}
- * Get course by name {Get}
- * Create new course {Post}
- * Edit course name {PUT}
- * Remove course {Delete}
- * Student register {}
- * Student deregister {}
- */
+const PORT = 3000;
 
-const port = 3000;
-
-app.listen(port, () => {
-  console.log(`server is listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`server is listening on port ${PORT}`);
 });
