@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const courses = require("./routes/courses");
+const db = require("./models");
+
+// (async () => {
+//   await db.sequelize.sync({ force: true });
+// })();
 
 app.get("/", (req, res) => {
   console.log("made a request");
@@ -15,7 +20,6 @@ app.use("/api/v1/courses", courses);
 //Routes
 /**
  * Get all courses {Get}
- * Get all courses sorted by name {Get}
  * Get course by name {Get}
  * Create new course {Post}
  * Edit course name {PUT}

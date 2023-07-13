@@ -3,18 +3,16 @@ const router = express.Router();
 
 const {
   getAllCourses,
-  getAllCoursesSorted,
   getSingleCourse,
-  CreateCourse,
-  EditCourse,
-  RemoveCourse,
+  addCourse,
+  updateCourse,
+  deleteCourse,
 } = require("../controllers/courses");
 
 router.route("/").get(getAllCourses);
-router.route("/").get(getAllCoursesSorted);
 router.route("/:id").get(getSingleCourse);
-router.route("/").post(CreateCourse);
-router.route("/:id").patch(EditCourse);
-router.route("/:id").delete(RemoveCourse);
+router.route("/").post(addCourse);
+router.route("/:id").patch(updateCourse);
+router.route("/:id").delete(deleteCourse);
 
 module.exports = router;
