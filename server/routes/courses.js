@@ -15,4 +15,6 @@ router.route("/").post(addCourse);
 router.route("/:id").patch(updateCourse);
 router.route("/:id").delete(deleteCourse);
 
+
+
 module.exports = router;
