@@ -70,8 +70,38 @@ const getEnrollments = async (req, res) => {
   }
 };
 
+const getStudentEnrollments = async (req, res) => {
+  try {
+    const id = req.params.student_id;
+
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+    const studentRegistration = await Registration.findAll({
+      where: {
+        studentId: id,
+      },
+    }); //From docs model.findall() returns an array of the models
+
+    if (studentRegistration.length == 0) {
+      return res
+        .status(200)
+        .json({ msg: "Student is not registered to any course" });
+    }
+
+    console.log(studentRegistration.length);
+    res.status(200).json({ studentRegistration });
+  } catch (error) {
+    console.error("Error getting enrolling:", error);
+    res.status(500).json({ msg: error });
+  }
+};
+
 module.exports = {
   enrollToCourse,
   unenrollFromCourse,
   getEnrollments,
+  getStudentEnrollments,
 };

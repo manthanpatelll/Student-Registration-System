@@ -5,9 +5,12 @@ const student = require("./routes/students");
 const registration = require("./routes/registration");
 const notFound = require("./middleware/not_found");
 require("dotenv").config();
+const cors = require("cors");
 
 //middleware
-app.use(notFound);
+// app.use(notFound);
+
+app.use(cors());
 app.use(express.json());
 
 //routes
