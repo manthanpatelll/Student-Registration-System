@@ -72,29 +72,34 @@ const getEnrollments = async (req, res) => {
 
 const getStudentEnrollments = async (req, res) => {
   try {
-    const id = req.params.student_id;
+    const studentId = req.params.student_id;
 
-    const student = await Student.findByPk(id);
+    // Retrieve the student and associated courses using the `include` option
+    const student = await Student.findByPk(studentId, {
+      include: {
+        model: Course,
+        through: { attributes: [] }, // Exclude junction table attributes
+      },
+    });
+
+    console.log(student);
 
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
-    const studentRegistration = await Registration.findAll({
-      where: {
-        studentId: id,
-      },
-    }); //From docs model.findall() returns an array of the models
 
-    if (studentRegistration.length == 0) {
+    // Extract the courses from the student object
+    const courses = student.courses;
+
+    if (courses.length === 0) {
       return res
         .status(200)
-        .json({ msg: "Student is not registered to any course" });
+        .json({ msg: "Student is not enrolled in any course" });
     }
 
-    console.log(studentRegistration.length);
-    res.status(200).json({ studentRegistration });
+    res.status(200).json({ courses });
   } catch (error) {
-    console.error("Error getting enrolling:", error);
+    console.error("Error getting enrollments:", error);
     res.status(500).json({ msg: error });
   }
 };

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import Courses from "./Courses"
+import CoursesAction from "./CoursesAction"
 
-const CourseEnrolled = () => {
+const CoursesDisenrol = () => {
 
     const [courses, setCourses] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:3000/api/v1/courses/studentenrollments/1`)
             .then((res) => {
-                // console.log(res.data)
+                console.log(res.data)
                 setCourses(res.data.courses)
-                // console.log(courses.length)
+                // console.log(courses.lengthå)
             })
     }, [])
 
@@ -19,7 +19,7 @@ const CourseEnrolled = () => {
         <div>
             { courses && courses.length > 0 ? (
                 courses.map((course) => (
-                    <div key={ course.id }><Courses course={ { ...course, isEnrolled: true } } /></div>
+                    <div key={ course.id }><CoursesAction course={ { ...course, isEnrolled: true } } /></div>
                 ))
             ) : (
                 <div>
@@ -29,4 +29,4 @@ const CourseEnrolled = () => {
         </div>
     );
 }
-export default CourseEnrolled 
+export default CoursesDisenrol

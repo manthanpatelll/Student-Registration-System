@@ -1,11 +1,8 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const Courses = (props) => {
-    console.log(props)
     // eslint-disable-next-line react/prop-types
     const { course_name, course_capacity, course_start_date, course_end_date } = props.course
     return (
@@ -24,10 +21,6 @@ const Courses = (props) => {
                     CAPACITY: { course_capacity }
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     );
 }

@@ -1,12 +1,43 @@
 import { useState } from "react"
-import CourseList from "../components/courses/CourseList"
+import CourseCatalogue from "../components/courses/CourseCatalogue"
+import CourseEnrolled from "../components/courses/CourseEnrolled"
+import CourseEnrol from "../components/courses/CourseEnrol"
+import CoursesDisenrol from "../components/courses/CoursesDisenrol"
 
 const Dashboard = () => {
 
-  const [allCourses, setAllCourses] = useState(false)
+  const [viewCourses, setViewCourses] = useState(false)
+  const [yourCourses, setYourCourses] = useState(false)
+  const [enrollCourse, setEnrollCourse] = useState(false)
+  const [disenrollCourse, setDisenrollCourse] = useState(false)
+
 
   const handleViewAllCourses = () => {
-    setAllCourses(false)
+    setViewCourses(true)
+    setYourCourses(false)
+    setEnrollCourse(false)
+    setDisenrollCourse(false)
+  }
+
+  const handleViewRegisteredCourses = () => {
+    setYourCourses(true)
+    setViewCourses(false)
+    setEnrollCourse(false)
+    setDisenrollCourse(false)
+  }
+
+  const handleEnrollToCourse = () => {
+    setEnrollCourse(true)
+    setViewCourses(false)
+    setYourCourses(false)
+    setDisenrollCourse(false)
+  }
+
+  const handleDisenrollFromCourseCourse = () => {
+    setDisenrollCourse(true)
+    setViewCourses(false)
+    setYourCourses(false)
+    setEnrollCourse(false)
   }
   return (
     <div>
@@ -15,9 +46,20 @@ const Dashboard = () => {
       </div>
 
       <div>
-        <button onClick={ handleViewAllCourses }>ENROL TO COURSE</button>
+        <button onClick={ handleViewRegisteredCourses }>VIEW YOUR COURSES</button>
       </div>
-      { allCourses && <CourseList /> }
+
+      <div>
+        <button onClick={ handleEnrollToCourse }>ENROLL TO COURSE</button>
+      </div>
+
+      <div>
+        <button onClick={ handleDisenrollFromCourseCourse }>DISENROL FROM COURSE</button>
+      </div>
+      { viewCourses && <CourseCatalogue /> }
+      { yourCourses && <CourseEnrolled /> }
+      { enrollCourse && <CourseEnrol /> }
+      { disenrollCourse && <CoursesDisenrol /> }
     </div>
   )
 }

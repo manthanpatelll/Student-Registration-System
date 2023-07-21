@@ -1,5 +1,4 @@
 import { Box } from "@mui/material"
-import CourseList from "./components/courses/CourseList"
 import Dashboard from "./pages/Dashboard"
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
       } }>
 
         <Dashboard />
-        <CourseList />
       </Box>
     </div>
   )
