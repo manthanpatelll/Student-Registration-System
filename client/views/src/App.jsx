@@ -1,5 +1,6 @@
 import { Box } from "@mui/material"
 import Dashboard from "./pages/Dashboard"
+import Login from "./pages/Login"
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         bgcolor: 'background.paper',
       } }>
 
-        <Dashboard />
+        <Login />
       </Box>
     </div>
   )

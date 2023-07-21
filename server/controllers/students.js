@@ -26,6 +26,19 @@ const getSingleStudent = async (req, res) => {
 
 const addStudent = async (req, res) => {
   try {
+    const { student_email } = req.body;
+
+    // Check if a student with the same email already exists
+    const existingStudent = await Student.findOne({
+      where: {
+        student_email
+      },
+    });
+
+    if (existingStudent) {
+      return res.status(400).json({ msg: "Email already exists." });
+    }
+
     let student = await Student.create(req.body);
     res.status(200).json(student);
   } catch (error) {
@@ -61,10 +74,41 @@ const deleteStudent = async (req, res) => {
   }
 };
 
+const studentLogin = async (req, res) => {
+  try {
+    const { student_email, student_password } = req.params;
+
+    const student = await Student.findOne({
+      where: {
+        student_email,
+      },
+    });
+
+    if (!student) {
+      throw new Error("Student not found");
+    }
+
+    console.log(student);
+
+    if (
+      student.student_password !== student_password ||
+      student.student_email !== student_email
+    ) {
+      throw new Error("Incorrect username or password");
+    }
+
+    res.status(200).json(student);
+  } catch (error) {
+    console.error("Error during student login:", error);
+    res.status(401).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllStudents,
   getSingleStudent,
   addStudent,
   updateStudent,
   deleteStudent,
+  studentLogin,
 };
