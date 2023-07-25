@@ -5,5 +5,5 @@ module.exports = {
   USER: process.env.MYSQL_USER,
   PASSWORD: process.env.MYSQL_PASSWORD,
   DB: process.env.MYSQL_DB_NAME,
-  dialect: process.env.MYSQL_DIALECT,
+  dialect: "mysql",
 };
