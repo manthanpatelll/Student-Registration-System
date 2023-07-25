@@ -78,15 +78,15 @@ const studentLogin = async (req, res) => {
   try {
     const { student_email, student_password } = req.params;
 
+    if (!student_email || !student_password) {
+      throw new Error("Student Email or Password cannot be empty");
+    }
+
     const student = await Student.findOne({
       where: {
         student_email,
       },
     });
-
-    if (student_password == "" || student_email == "") {
-      throw new Error("Student Email or Password can not be empty");
-    }
 
     if (!student) {
       throw new Error("Student not found");
@@ -98,7 +98,7 @@ const studentLogin = async (req, res) => {
       student.student_password !== student_password ||
       student.student_email !== student_email
     ) {
-      throw new Error("Incorrect username or password");
+      throw new Error("Incorrect email or password");
     }
 
     res.status(200).json(student);
