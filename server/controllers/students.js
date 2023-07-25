@@ -31,7 +31,7 @@ const addStudent = async (req, res) => {
     // Check if a student with the same email already exists
     const existingStudent = await Student.findOne({
       where: {
-        student_email
+        student_email,
       },
     });
 
@@ -83,6 +83,10 @@ const studentLogin = async (req, res) => {
         student_email,
       },
     });
+
+    if (student_password == "" || student_email == "") {
+      throw new Error("Student Email or Password can not be empty");
+    }
 
     if (!student) {
       throw new Error("Student not found");
