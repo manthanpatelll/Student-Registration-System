@@ -44,11 +44,11 @@ const Login = () => {
                 noValidate
                 autoComplete="on"
             >
-                <TextField id="standard-basic" label="Student Email" variant="standard" onChange={ (e) => {
+                <TextField id="standard-basic" label="Student Email" type="email" variant="standard" onChange={ (e) => {
                     console.log(e.target.value)
                     setStudentEmail(e.target.value)
                 } } />
-                <TextField id="standard-basic" label="password" variant="standard" onChange={ (e) => {
+                <TextField id="standard-basic" label="password" type="password" variant="standard" onChange={ (e) => {
                     console.log(e.target.value)
                     setStudentPassword(e.target.value)
                 } } />
