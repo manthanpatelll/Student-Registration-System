@@ -8,7 +8,7 @@ const CourseEnrol = () => {
   const [courses, setCourses] = useState([])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/v1/courses`)
+    axios.get(`https://student-registration-system-api.onrender.com/api/v1/courses`)
       .then((res) => {
         console.log(res.data)
         setCourses(res.data.courses)

@@ -10,7 +10,7 @@ const CourseEnrolled = () => {
     const student_id = sessionStorage.getItem("student_id")
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/v1/courses/studentenrollments/${student_id}`)
+        axios.get(`https://student-registration-system-api.onrender.com/api/v1/courses/studentenrollments/${student_id}`)
             .then((res) => {
                 // console.log(res.data)
                 setCourses(res.data.courses)

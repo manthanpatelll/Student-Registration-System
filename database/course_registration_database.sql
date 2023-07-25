@@ -1,11 +1,8 @@
-DROP DATABASE IF EXISTS courseregistrtation;
-CREATE DATABASE courseregistrtation;
-USE courseregistrtation;
-
 INSERT INTO student(first_name, last_name, student_email, student_password)
 VALUES 
 	("Oluwajolasun", "Jaiyesimi", "jolasun@email.com","password"),
-    ("Nicole", "Noble", "nicole@email.com", "password");
+    ("Nicole", "Noble", "nicole@email.com", "password"),
+	("Test", "User", "test@email.com", "test");
 
 INSERT INTO course(course_name, course_capacity, course_start_date, course_end_date, has_prerequisites)
 VALUES
@@ -17,6 +14,10 @@ VALUES
 	("ENSF611", 17, "2022-09-08", "2022-12-05", 1),
 	("ENSF612", 21, "2022-09-08", "2022-12-05", 1),
 	("ENSF614", 22, "2022-09-08", "2022-12-05", 1);
+
+-- DROP DATABASE IF EXISTS courseregistrtation;
+-- CREATE DATABASE courseregistrtation;
+-- USE courseregistrtation;
 
 -- DROP TABLE IF EXISTS student;
 -- CREATE TABLE student(

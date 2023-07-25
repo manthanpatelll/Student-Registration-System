@@ -12,23 +12,22 @@ const Login = () => {
     const [studentPassword, setStudentPassword] = useState("")
     const navigate = useNavigate();
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault()
-        axios.get(`http://localhost:3000/api/v1/students/login/${studentEmail}/${studentPassword}`)
-            .then((res) => {
-                res.data
-                console.log(res.data)
-                sessionStorage.setItem("student_id", res.data.id)
-                sessionStorage.setItem("student_firstname", res.data.first_name)
-                sessionStorage.setItem("student_lastname", res.data.last_name)
-                sessionStorage.setItem("student_email", res.data.student_email)
-                navigate("/dashboard")
-            })
-            .catch((error) => {
-                alert(`${error.response.data.message}`);
-                console.log(error.response.data.message);
-            });
-
+        try {
+            await axios.get(`https://student-registration-system-api.onrender.com/api/v1/students/login/${studentEmail}/${studentPassword}`)
+                .then((res) => {
+                    console.log(res.data)
+                    sessionStorage.setItem("student_id", res.data.id)
+                    sessionStorage.setItem("student_firstname", res.data.first_name)
+                    sessionStorage.setItem("student_lastname", res.data.last_name)
+                    sessionStorage.setItem("student_email", res.data.student_email)
+                    navigate("/dashboard")
+                })
+        } catch (error) {
+            alert(`${error.response.data.error}`);
+            console.log(error.response.data.error);
+        }
     }
 
     return (

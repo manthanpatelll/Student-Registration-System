@@ -13,7 +13,7 @@ const CoursesAction = (props) => {
 
     const handleEnroll = async () => {
         try {
-            const res = await axios.post(`http://localhost:3000/api/v1/courses/${id}/student/${student_id}`)
+            const res = await axios.post(`https://student-registration-system-api.onrender.com/api/v1/courses/${id}/student/${student_id}`)
             const { message } = res.data
 
             if (message === "Student already enrolled to course") {
@@ -31,7 +31,7 @@ const CoursesAction = (props) => {
 
     const handleDisenroll = async () => {
         try {
-            const res = await axios.delete(`http://localhost:3000/api/v1/courses/${id}/student/${student_id}`)
+            const res = await axios.delete(`https://student-registration-system-api.onrender.com/api/v1/courses/${id}/student/${student_id}`)
             const { message } = res.data
 
             if (message === "Student not enrolled to course") {
