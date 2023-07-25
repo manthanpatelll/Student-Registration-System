@@ -3,6 +3,8 @@ import CourseCatalogue from "../components/courses/CourseCatalogue"
 import CourseEnrolled from "../components/courses/CourseEnrolled"
 import CourseEnrol from "../components/courses/CourseEnrol"
 import CoursesDisenrol from "../components/courses/CoursesDisenrol"
+import { Grid, Stack, Typography } from "@mui/material"
+import Navbar from "../components/Navbar"
 
 const Dashboard = () => {
 
@@ -41,26 +43,36 @@ const Dashboard = () => {
   }
   return (
     <div>
-      <div>
-        <button onClick={ handleViewAllCourses }>VIEW ALL COURSES</button>
-      </div>
+      <Navbar />
+      <Grid container height={ "80vh" } alignItems={ "center" }>
+        <Grid item xs={ 6 }>
+          <div style={ { display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: "column" } }>
 
-      <div>
-        <button onClick={ handleViewRegisteredCourses }>VIEW YOUR COURSES</button>
-      </div>
+            <Typography variant="h5" component="div" sx={ { flexGrow: 1 } } paddingBottom={"2rem"}>
+              Welcome { sessionStorage.getItem("student_firstname") + " " }
+              { sessionStorage.getItem("student_lastname") }
+            </Typography>
+            <Stack spacing={ 3 }>
 
-      <div>
-        <button onClick={ handleEnrollToCourse }>ENROLL TO COURSE</button>
-      </div>
+              <button onClick={ handleViewAllCourses }>VIEW ALL COURSES</button>
+              <button onClick={ handleViewRegisteredCourses }>VIEW YOUR COURSES</button>
+              <button onClick={ handleEnrollToCourse }>ENROLL TO COURSE</button>
+              <button onClick={ handleDisenrollFromCourseCourse }>DISENROL FROM COURSE</button>
+            </Stack>
+          </div>
+        </Grid>
+        <Grid item xs={ 6 }>
+          <div style={ { justifyContent: 'center', alignItems: "center" } }>
+            { viewCourses && <CourseCatalogue /> }
+            { yourCourses && <CourseEnrolled /> }
+            { enrollCourse && <CourseEnrol /> }
+            { disenrollCourse && <CoursesDisenrol /> }
+          </div>
 
-      <div>
-        <button onClick={ handleDisenrollFromCourseCourse }>DISENROL FROM COURSE</button>
-      </div>
-      { viewCourses && <CourseCatalogue /> }
-      { yourCourses && <CourseEnrolled /> }
-      { enrollCourse && <CourseEnrol /> }
-      { disenrollCourse && <CoursesDisenrol /> }
+        </Grid>
+      </Grid>
     </div>
+
   )
 }
 export default Dashboard

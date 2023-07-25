@@ -6,7 +6,7 @@ const Courses = (props) => {
     // eslint-disable-next-line react/prop-types
     const { course_name, course_capacity, course_start_date, course_end_date } = props.course
     return (
-        <Card sx={ { minWidth: 350 } }>
+        <Card sx={ { width: 230, height: 150 } }>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" align='center'>
                     { course_name }

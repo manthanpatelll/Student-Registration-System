@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import CoursesAction from "./CoursesAction"
+import { Grid } from "@mui/material"
 
 const CourseEnrol = () => {
 
@@ -15,12 +16,15 @@ const CourseEnrol = () => {
   }, [])
 
 
-  return (<div>
-    {
-      (courses.map((course) => {
-        return <div key={ course.id }><CoursesAction course={ { ...course, isEnrolled: false } } /></div>
-      })) }
-  </div >
+  return (
+    <Grid container spacing={ { xs: 2, md: 3 } } columns={ { xs: 4, sm: 8, md: 12 } }>
+      { courses.map((course) => {
+        return (
+          <Grid item xs={ 2 } sm={ 4 } md={ 4 } key={ course.id }>
+            <CoursesAction course={ { ...course, isEnrolled: false } } />
+          </Grid>)
+      }) }
+    </Grid>
   )
 }
 export default CourseEnrol

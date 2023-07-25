@@ -3,6 +3,8 @@ import { Stack } from "@mui/system"
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import "../index.css"
+import LoginImage from "../components/LoginImage"
 
 const Login = () => {
 
@@ -30,26 +32,29 @@ const Login = () => {
     }
 
     return (
-        <Stack
-            component="form"
-            onSubmit={ handleOnSubmit }
-            sx={ {
-                '& > :not(style)': { m: 1, width: '25ch' },
-            } }
-            noValidate
-            autoComplete="off"
-        >
+        <div className="center">
 
-            <TextField id="standard-basic" label="Student Email" variant="standard" onChange={ (e) => {
-                console.log(e.target.value)
-                setStudentEmail(e.target.value)
-            } } />
-            <TextField id="standard-basic" label="password" variant="standard" onChange={ (e) => {
-                console.log(e.target.value)
-                setStudentPassword(e.target.value)
-            } } />
-            <Button variant="contained" type="submit">Login</Button>
-        </Stack>
+            <LoginImage />
+            <Stack
+                component="form"
+                onSubmit={ handleOnSubmit }
+                sx={ {
+                    '& > :not(style)': { m: 1, width: '25ch' },
+                } }
+                noValidate
+                autoComplete="on"
+            >
+                <TextField id="standard-basic" label="Student Email" variant="standard" onChange={ (e) => {
+                    console.log(e.target.value)
+                    setStudentEmail(e.target.value)
+                } } />
+                <TextField id="standard-basic" label="password" variant="standard" onChange={ (e) => {
+                    console.log(e.target.value)
+                    setStudentPassword(e.target.value)
+                } } />
+                <Button variant="contained" type="submit">Login</Button>
+            </Stack>
+        </div>
     )
 }
 export default Login

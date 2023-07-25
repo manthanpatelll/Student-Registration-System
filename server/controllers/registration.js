@@ -25,7 +25,7 @@ const enrollToCourse = async (req, res) => {
         .status(200)
         .json({ message: "Student already enrolled to course" });
     }
-    res.status(200).json(action);
+    res.status(200).json({ message: "Student successfully enrolled to course" });
   } catch (error) {
     console.error("Error enrolling student:", error);
     res.status(500).json({ msg: error });

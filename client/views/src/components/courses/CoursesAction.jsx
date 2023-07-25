@@ -9,26 +9,45 @@ const CoursesAction = (props) => {
     // eslint-disable-next-line react/prop-types
     const { id, course_name, course_capacity, course_start_date, course_end_date, isEnrolled } = props.course
 
+    const student_id = sessionStorage.getItem("student_id")
 
     const handleEnroll = async () => {
-        await axios
-            .post(
-                `http://localhost:3000/api/v1/courses/${id}/student/1`,
-            )
-        alert(`Enrolling in ${course_name}`)
-        console.log(`Enrolling in ${course_name}`);
-    };
+        try {
+            const res = await axios.post(`http://localhost:3000/api/v1/courses/${id}/student/${student_id}`)
+            const { message } = res.data
+
+            if (message === "Student already enrolled to course") {
+                alert(`You are already enrolled in ${course_name}`);
+            } else {
+                alert(`Enrolling in ${course_name}`);
+                console.log(`Enrolling in ${course_name}`);
+            }
+        } catch (error) {
+            alert(`Error enrolling in ${course_name}`);
+            console.log(`Error enrolling in ${course_name}`);
+        }
+    }
+
 
     const handleDisenroll = async () => {
-        await axios
-            .delete(
-                `http://localhost:3000/api/v1/courses/${id}/student/1`,
-            )
-        console.log(`Disenrolling from ${course_name}`);
+        try {
+            const res = await axios.delete(`http://localhost:3000/api/v1/courses/${id}/student/${student_id}`)
+            const { message } = res.data
+
+            if (message === "Student not enrolled to course") {
+                alert(`You are not enrolled to ${course_name}, please view your courses`);
+            } else {
+                alert(`Disenrolling from ${course_name}`);
+                console.log(`Disenrolling from ${course_name}`);
+            }
+        } catch (error) {
+            alert(`Error Disenrolling from ${course_name}`);
+            console.log(`Error Disenrolling from ${course_name}`);
+        }
     };
 
     return (
-        <Card sx={ { minWidth: 350 } }>
+        <Card sx={ { width: 230, height: 200 } }>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" align='center'>
                     { course_name }

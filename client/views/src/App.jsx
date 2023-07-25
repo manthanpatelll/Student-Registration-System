@@ -10,12 +10,7 @@ function App() {
 
   return (
     <div style={ { width: '100%' } }>
-      <Box sx={ {
-        display: 'flex',
-        flexDirection: 'row',
-        bgcolor: 'background.paper',
-      } }>
-
+      <Box>
         <Routes>
           <Route path="/" element={ <Login /> } />
           <Route path="/dashboard" element={ <Dashboard /> } />
