@@ -1,5 +1,7 @@
 # Student Course Registration App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0046ff95-c08b-4a1a-b686-2c32a498e6ea/deploy-status)](https://app.netlify.com/sites/student-registration-system-uofc/deploys)
+
 > A web app for registered students to view all courses, view their registered courses, enroll to a course and drop a course
 > Perform CRUD operations by adding and removing students to and from the database updating their information and as well as the courses too
 
