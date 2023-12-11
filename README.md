@@ -11,8 +11,7 @@ STACK used (MERN) and some of the frameworks used
 - ExpressJS
 - ReactJS
 - NodeJS
-- MaterialUI
-- (Render | Clever Cloud | Netlify) for deployment
+- (Render | Clever Cloud | Netlify) for deployment and I have used Netlify
 
 ## Setup
 
@@ -20,9 +19,6 @@ Site is already hosted, no need to setup
 [click here](https://student-registration-system-uofc.netlify.app/) to visit the site
 
 ## Demo
-
-The current students registered to the school is me and my girlfriend, we cant share our login details, but there is a third test user anyone can sign in with for demo purposes
-
 ```
 student_email: test@email.com and student_password: test
 ```
